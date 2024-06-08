@@ -11,6 +11,11 @@ export async function initServer(){
     const app = express();
     app.use(cors())
     app.use(bodyParser.json())
+    app.get('/',(req,res)=>{
+        return res.status(200).json({
+            message:"Everything is fine"
+        })
+    })
     const grapthQLServer = new ApolloServer<GraphqlContext>({
         typeDefs: `
         ${User.types}
