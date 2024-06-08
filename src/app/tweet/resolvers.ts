@@ -8,9 +8,10 @@ import TweetService, { CreateTweetPayload } from "../../services/Tweet";
 
 const accessKeyId = process.env.AWS_ACCESS_KEY;
 const secretAccessKey = process.env.AWS_SECRET_KEY;
-if(!accessKeyId || !secretAccessKey)throw new Error("Accesskey and secretkey can't be null")
+const aws_region = process.env.AWS_REGION;
+if(!accessKeyId || !secretAccessKey || !aws_region)throw new Error("Accesskey and secretkey can't be null")
 const s3Client = new S3Client({
-    region:'ap-south-1',
+    region:aws_region,
     credentials:{ 
         accessKeyId:accessKeyId,
         secretAccessKey: secretAccessKey,
